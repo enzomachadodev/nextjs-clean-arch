@@ -48,7 +48,7 @@ O site deve implementar o design descrito nas telas abaixo. Todas as imagens nec
 
 A fonte utilizada em todas as páginas, e inclusive no logo, é chamada `Inter` e está disponível no Google Fonts.
 
-Este figma pode ser utilizado para consulta: https://www.figma.com/file/WU8hciI3zIX5RARW6nvs4i/Untitled?node-id=109%3A131&t=xBBhYvrgvf6H9On7-1
+Este figma pode ser utilizado para consulta: https://www.figma.com/file/TxK6YkULMRyMCf6158VYNx/CODIE-TESTE-FRONT-END?type=design&node-id=0-1&mode=design&t=0dzPE2mRNqKfLXIg-0
 
 ### Home
 ![home page](public/test-sample/Home.png)
