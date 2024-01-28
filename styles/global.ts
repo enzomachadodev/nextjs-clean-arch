@@ -8,11 +8,11 @@ const GlobalStyles = createGlobalStyle`
   --gray-1: #EEEEEE;
   --gray-2: #D5D5D5;
   --gray-3: #747474;
-  --gray-4: #1D1D1D;
+  --gray-4: #474747;
   --black: #000000;
 
   --text-xs: 0.5rem;
-  --text-sm: 0.75;
+  --text-sm: 0.75rem;
   --text-md: 0.875rem;
   --text-lg: 1rem;
   --text-xl: 1.125rem;
