@@ -25,10 +25,6 @@ const GlobalStyles = createGlobalStyle`
   --font-semibold: 600;
   --font-bold: 700;
   --font-extrabold: 800;
-
-
-
-
 }
 
 * {
