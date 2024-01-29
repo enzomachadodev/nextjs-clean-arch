@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { InputProps } from "./";
+import { InputProps } from ".";
 
 const errorStyles = css`
 	border-color: var(--primary);

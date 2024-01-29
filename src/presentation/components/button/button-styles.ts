@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ButtonProps } from "./button";
+import { ButtonProps } from ".";
 
 const defaultStyles = css`
 	background-color: var(--primary);
@@ -7,7 +7,7 @@ const defaultStyles = css`
 	color: var(--white);
 
 	&:hover {
-		opacity: 0.9;
+		opacity: 0.8;
 	}
 `;
 
@@ -16,7 +16,6 @@ const ghostStyles = css`
 	background: none;
 
 	&:hover {
-		text-decoration: underline;
 		background-color: var(--gray-0);
 	}
 `;

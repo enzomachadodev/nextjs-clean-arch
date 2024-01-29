@@ -1,13 +1,13 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import * as S from "./logo-styles";
-import { useEffect, useState } from "react";
 
 export const Logo: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [expanded, setExpanded] = useState<"open" | "close">("open");
 
 	useEffect(() => {
 		const collapseTimeout = setTimeout(() => {
-			setIsOpen(false);
+			setExpanded("close");
 		}, 5000);
 
 		return () => clearTimeout(collapseTimeout);
@@ -16,7 +16,7 @@ export const Logo: React.FC = () => {
 	return (
 		<S.LogoContainer
 			href="/"
-			isOpen={isOpen}
+			expanded={expanded}
 		>
 			<Image
 				src="/images/white-pokeball.svg"
