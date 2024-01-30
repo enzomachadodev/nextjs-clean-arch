@@ -1,8 +1,9 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { GlobalStyles } from "@/presentation/styles/global";
 import { StyleSheetManager } from "styled-components";
 import { Header } from "@/presentation/components/header";
-import GlobalStyles from "@/presentation/styles/global";
+import { Footer } from "@/presentation/components/footer";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<GlobalStyles />
 				<Header />
 				<Component {...pageProps} />
+				<Footer />
 			</StyleSheetManager>
 		</>
 	);
