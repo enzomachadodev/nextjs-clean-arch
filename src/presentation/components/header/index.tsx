@@ -10,10 +10,10 @@ export const Header: React.FC = () => {
 			<S.Container>
 				<Logo />
 				<S.Nav>
-					<Link href={"/about"}>
+					<Link href={"/quem-somos"}>
 						<Button variant="ghost">Quem somos</Button>
 					</Link>
-					<Link href={"/about"}>
+					<Link href={"/agendar-consulta"}>
 						<Button>Agendar Consulta</Button>
 					</Link>
 				</S.Nav>
