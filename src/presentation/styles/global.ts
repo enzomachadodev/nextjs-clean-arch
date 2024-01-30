@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
 :root {
   --primary: #E40F0F;
   --white: #ffffff;
@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
   --gray-2: #D5D5D5;
   --gray-3: #747474;
   --gray-4: #474747;
+  --gray-5: #1D1D1D;
   --black: #000000;
 
   --text-xs: 0.5rem;
@@ -42,6 +43,4 @@ a {
   color: inherit;
 }
 `;
-
-export default GlobalStyles;
 

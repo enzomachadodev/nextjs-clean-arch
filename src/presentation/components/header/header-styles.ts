@@ -1,5 +1,5 @@
+import { MaxWidthWrapper } from "@/presentation/styles/shared";
 import styled from "styled-components";
-import { MaxWidthWrapper } from "../max-width-wrapper/max-width-wrapper-styles";
 
 export const Header = styled.header`
 	width: 100%;
