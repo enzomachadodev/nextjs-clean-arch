@@ -1,7 +1,7 @@
 import Image from "next/image";
 import * as S from "./home-styles";
 
-export const HomeTemplate: React.FC = () => {
+export const HomeLayout: React.FC = () => {
 	return (
 		<S.HomeContainer>
 			<Image
