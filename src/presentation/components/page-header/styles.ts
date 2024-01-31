@@ -10,11 +10,14 @@ export const PageHeaderContainer = styled.div`
 `;
 
 export const PageHeaderWrapper = styled(MaxWidthWrapper)`
-	padding-right: 2.5rem;
-	padding-left: 2.5rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+
+	@media (min-width: 640px) {
+		padding-right: 2.5rem;
+		padding-left: 2.5rem;
+	}
 `;
 
 export const PageHeaderPaths = styled.div`
@@ -26,7 +29,7 @@ export const PageHeaderPaths = styled.div`
 	font-size: var(--text-md);
 	text-transform: capitalize;
 
-	.path-link:hover {
+	.a:hover {
 		text-decoration: underline;
 	}
 `;

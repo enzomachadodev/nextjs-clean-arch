@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as S from "./styles";
+import { Fragment } from "react";
 
 interface PageHeaderProps {
 	subtitle: string;
@@ -16,16 +17,15 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ subtitle }) => {
 			<S.PageHeaderWrapper>
 				<S.PageHeaderPaths>
 					{paths.map((item, index) => (
-						<>
+						<Fragment key={index}>
 							<Link
 								key={index}
 								href={`/${item}`}
-								className="path-link"
 							>
 								{item}
 							</Link>
 							{index < paths.length - 1 && <p>{">"}</p>}
-						</>
+						</Fragment>
 					))}
 				</S.PageHeaderPaths>
 				<S.PageHeaderHeading>{paths[paths.length - 1]}</S.PageHeaderHeading>
