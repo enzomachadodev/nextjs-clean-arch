@@ -4,7 +4,7 @@ export type LocationProps = {
 	name: string;
 };
 
-export class Location extends Entity<LocationProps> {
+export class LocationEntity extends Entity<LocationProps> {
 	constructor(public readonly props: LocationProps) {
 		super(props);
 	}
