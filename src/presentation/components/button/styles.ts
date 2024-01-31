@@ -20,11 +20,24 @@ const ghostStyles = css`
 	}
 `;
 
+const outlineStyles = css`
+	font-weight: var(--font-bold);
+	font-size: var(--text-md);
+	background: none;
+	border: 1px solid var(--black);
+
+	&:hover {
+		background-color: var(--gray-0);
+	}
+`;
+
 export const Button = styled.button<ButtonProps>`
 	height: 45px;
+	width: fit-content;
 	padding: 16px 20px;
 	border-radius: 30px;
 	display: flex;
+	gap: 10px;
 	align-items: center;
 	white-space: nowrap;
 	font-size: var(--text-lg);
@@ -32,6 +45,11 @@ export const Button = styled.button<ButtonProps>`
 	border: none;
 	cursor: pointer;
 
-	${({ variant }) => (variant === "ghost" ? ghostStyles : defaultStyles)}
+	${({ variant }) =>
+		variant === "ghost"
+			? ghostStyles
+			: variant === "outline"
+			? outlineStyles
+			: defaultStyles}
 `;
 
