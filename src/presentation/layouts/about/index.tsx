@@ -1,13 +1,10 @@
 import * as S from "./about-styles";
 import { PageHeader } from "@/presentation/components/page-header";
 
-export const AboutTemplate: React.FC = () => {
+export const AboutLayout: React.FC = () => {
 	return (
 		<S.AboutContainer>
-			<PageHeader
-				title="Quem somos"
-				subtitle="A maior rede de tratamento pokémon."
-			/>
+			<PageHeader subtitle="A maior rede de tratamento pokémon." />
 			<S.AboutContentWrapper>
 				<S.AboutTextWrapper>
 					<S.AboutTitle>O Centro Pokémon</S.AboutTitle>

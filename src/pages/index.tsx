@@ -1,8 +1,8 @@
+import { HomeLayout } from "@/presentation/layouts/home";
 import { NextPage } from "next";
-import { HomeTemplate } from "@/presentation/templates/home";
 
 const Home: NextPage = () => {
-	return <HomeTemplate />;
+	return <HomeLayout />;
 };
 
 export default Home;

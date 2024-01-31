@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import { AboutTemplate } from "@/presentation/templates/about";
+import { AboutLayout } from "@/presentation/layouts/about";
 
 const About: NextPage = () => {
-	return <AboutTemplate />;
+	return <AboutLayout />;
 };
 
 export default About;
