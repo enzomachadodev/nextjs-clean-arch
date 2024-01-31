@@ -1,10 +1,8 @@
-import Link from "next/link";
 import styled from "styled-components";
 
-export const LogoContainer = styled(Link)<{ expanded: string }>`
+export const LogoContainer = styled.a<{ expanded?: string }>`
 	height: 55px;
-	width: ${({ expanded }) =>
-		(expanded === "open" ? "225px" : "55px").toString()};
+	width: ${({ expanded }) => (expanded ? "225px" : "55px").toString()};
 	position: relative;
 	overflow: hidden;
 	transition: 0.5s;

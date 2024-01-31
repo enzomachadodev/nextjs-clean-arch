@@ -3,11 +3,11 @@ import Image from "next/image";
 import * as S from "./logo-styles";
 
 export const Logo: React.FC = () => {
-	const [expanded, setExpanded] = useState<"open" | "close">("open");
+	const [expanded, setExpanded] = useState(true);
 
 	useEffect(() => {
 		const collapseTimeout = setTimeout(() => {
-			setExpanded("close");
+			setExpanded(false);
 		}, 5000);
 
 		return () => clearTimeout(collapseTimeout);
@@ -16,7 +16,7 @@ export const Logo: React.FC = () => {
 	return (
 		<S.LogoContainer
 			href="/"
-			expanded={expanded}
+			expanded={expanded ? "open" : undefined}
 		>
 			<Image
 				src="/images/white-pokeball.svg"
