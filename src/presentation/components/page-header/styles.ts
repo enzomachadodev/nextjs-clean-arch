@@ -35,6 +35,7 @@ export const PageHeaderHeading = styled.h1`
 	font-size: var(--text-3xl);
 	font-weight: var(--font-bold);
 	color: var(--white);
+	text-transform: capitalize;
 `;
 
 export const PageHeaderSubtitle = styled.p`
