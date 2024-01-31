@@ -18,7 +18,7 @@ export const Input: React.FC<InputProps> = ({
 		<InputContainer>
 			{label && <label className="input-label">{label}</label>}
 			<S.Input
-				error={error}
+				error={error ? "error" : undefined}
 				{...props}
 			/>
 			{error && errorMessage && <p className="input-error">{errorMessage}</p>}
