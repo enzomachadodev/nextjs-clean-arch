@@ -1,12 +1,12 @@
-import * as React from "react";
-import * as S from "./button-styles";
+import { forwardRef } from "react";
+import * as S from "./styles";
 
 export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: "default" | "ghost";
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 	({ children, ...props }, ref) => {
 		return (
 			<S.Button
