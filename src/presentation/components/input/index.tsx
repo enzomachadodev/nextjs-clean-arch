@@ -1,22 +1,28 @@
-import * as React from "react";
-import * as S from "./input-styles";
+import { InputContainer } from "../input-container";
+import * as S from "./styles";
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
+	label?: string;
 	error?: boolean;
+	errorMessage?: string;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-	({ className, type, ...props }, ref) => {
-		return (
+export const Input: React.FC<InputProps> = ({
+	label,
+	error = false,
+	errorMessage,
+	...props
+}) => {
+	return (
+		<InputContainer>
+			{label && <label className="input-label">{label}</label>}
 			<S.Input
-				type={type}
-				ref={ref}
+				error={error}
 				{...props}
 			/>
-		);
-	}
-);
-
-Input.displayName = "Input";
+			{error && errorMessage && <p className="input-error">{errorMessage}</p>}
+		</InputContainer>
+	);
+};
 

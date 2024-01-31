@@ -5,7 +5,7 @@ const errorStyles = css`
 	border-color: var(--primary);
 `;
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<{ error: boolean }>`
 	height: 45px;
 	min-width: 265px;
 	background-color: var(--white);
