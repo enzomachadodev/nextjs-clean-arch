@@ -15,9 +15,9 @@ export const SelectContainer = styled.div`
 `;
 
 export const SelectTrigger = styled.div<{
-	isOpen: boolean;
-	error: boolean;
-	disabled: boolean;
+	open?: string;
+	error?: string;
+	disabled?: string;
 }>`
 	height: 45px;
 	width: 100%;
@@ -45,7 +45,7 @@ export const SelectTrigger = styled.div<{
 
 	.chevron {
 		transition: transform 0.2s ease-in-out;
-		transform: ${({ isOpen }) => (isOpen ? "rotate(180deg)" : "rotate(0deg)")};
+		transform: ${({ open }) => (open ? "rotate(180deg)" : "rotate(0deg)")};
 	}
 `;
 
@@ -71,7 +71,7 @@ const fadeOut = keyframes`
   }
 `;
 
-export const OptionsContainer = styled.div<{ isOpen: boolean }>`
+export const OptionsContainer = styled.div<{ open?: string }>`
 	position: absolute;
 	list-style: none;
 	top: 88%;
@@ -82,8 +82,8 @@ export const OptionsContainer = styled.div<{ isOpen: boolean }>`
 	border-radius: 0 0 8px 8px;
 	background-color: var(--white);
 	border: 1px solid var(--gray-2);
-	display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-	animation: ${({ isOpen }) => (isOpen ? fadeIn : fadeOut)} 0.2s ease-in-out;
+	display: ${({ open }) => (open ? "block" : "none")};
+	animation: ${({ open }) => (open ? fadeIn : fadeOut)} 0.2s ease-in-out;
 
 	.no-options-message {
 		padding: 16px;
@@ -94,14 +94,13 @@ export const OptionsContainer = styled.div<{ isOpen: boolean }>`
 	}
 `;
 
-export const OptionItem = styled.div<{ isSelected: boolean }>`
+export const OptionItem = styled.div<{ selected?: string }>`
 	width: 100%;
 	font-size: var(--text-lg);
 	font-weight: var(--font-medium);
 	color: var(--gray-3);
 	padding: 8px 16px;
-	background-color: ${({ isSelected }) =>
-		isSelected ? "var(--gray-0)" : null};
+	background-color: ${({ selected }) => (selected ? "var(--gray-0)" : null)};
 
 	&:hover {
 		background-color: var(--gray-0);

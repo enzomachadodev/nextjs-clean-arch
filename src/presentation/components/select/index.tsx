@@ -35,14 +35,9 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const [hasMounted, setHasMounted] = useState(false);
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchValue, setSearchValue] = useState("");
-
-	useEffect(() => {
-		setHasMounted(true);
-	}, []);
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -84,8 +79,6 @@ export const Select: React.FC<SelectProps> = ({
 		setIsOpen(!isOpen);
 	};
 
-	if (!hasMounted) return null;
-
 	return (
 		<InputContainer>
 			{label && <label className="input-label">{label}</label>}
@@ -96,9 +89,9 @@ export const Select: React.FC<SelectProps> = ({
 				/>
 				<S.SelectTrigger
 					onClick={handleSelectClick}
-					isOpen={isOpen}
-					error={error}
-					disabled={disabled}
+					open={isOpen ? "open" : undefined}
+					error={error ? "error" : undefined}
+					disabled={disabled ? "disabled" : undefined}
 				>
 					<div>
 						{selectedOption ? (
@@ -115,7 +108,7 @@ export const Select: React.FC<SelectProps> = ({
 						className="chevron"
 					/>
 				</S.SelectTrigger>
-				<S.OptionsContainer isOpen={isOpen}>
+				<S.OptionsContainer open={isOpen ? "open" : undefined}>
 					{enableSearch && (
 						<S.SearchContainer>
 							<Image
@@ -141,7 +134,9 @@ export const Select: React.FC<SelectProps> = ({
 						filteredOptions.map(({ label, value }, index) => (
 							<S.OptionItem
 								key={index}
-								isSelected={value === selectedOption?.value}
+								selected={
+									value === selectedOption?.value ? "selected" : undefined
+								}
 								onClick={() => handleOptionClick({ label, value })}
 							>
 								{label}
