@@ -14,7 +14,7 @@ export const SelectContainer = styled.div`
 	min-width: 265px;
 `;
 
-export const SelectTrigger = styled.button<{
+export const SelectTrigger = styled.div<{
 	isOpen: boolean;
 	error: boolean;
 	disabled: boolean;
@@ -71,7 +71,7 @@ const fadeOut = keyframes`
   }
 `;
 
-export const OptionsContainer = styled.ul<{ isOpen: boolean }>`
+export const OptionsContainer = styled.div<{ isOpen: boolean }>`
 	position: absolute;
 	list-style: none;
 	top: 88%;
@@ -94,7 +94,7 @@ export const OptionsContainer = styled.ul<{ isOpen: boolean }>`
 	}
 `;
 
-export const OptionItem = styled.li<{ isSelected: boolean }>`
+export const OptionItem = styled.div<{ isSelected: boolean }>`
 	width: 100%;
 	font-size: var(--text-lg);
 	font-weight: var(--font-medium);
@@ -131,6 +131,4 @@ export const SearchContainer = styled.div`
 		color: var(--gray-3);
 	}
 `;
-
-export const SearchOption = styled.input``;
 
