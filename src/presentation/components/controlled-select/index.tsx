@@ -8,9 +8,10 @@ import { Select, SelectProps } from "../select";
 
 export const ControlledSelect = <FormType extends FieldValues>({
 	name,
+	onSelect,
 	...props
 }: UseControllerProps<FormType> &
-	Omit<SelectProps, "onSelect" | "error" | "errorMessage" | "value">) => {
+	Omit<SelectProps, "error" | "errorMessage" | "value">) => {
 	const { control } = useFormContext();
 
 	return (
@@ -22,6 +23,9 @@ export const ControlledSelect = <FormType extends FieldValues>({
 					<Select
 						value={field.value}
 						onSelect={(value) => {
+							if (onSelect) {
+								onSelect(value);
+							}
 							field.onChange(value);
 						}}
 						error={!!fieldState.error}
