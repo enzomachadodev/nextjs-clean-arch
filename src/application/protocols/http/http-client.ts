@@ -5,8 +5,8 @@ export type HttpRequest = {
 	headers?: any;
 };
 
-export interface HttpClient<R = any> {
-	request: (data: HttpRequest) => Promise<HttpResponse<R>>;
+export interface HttpClient {
+	request<T>(data: HttpRequest): Promise<HttpResponse<T>>;
 }
 
 export type HttpMethod = "post" | "get" | "put" | "delete";
@@ -21,7 +21,8 @@ export enum HttpStatusCode {
 	serverError = 500,
 }
 
-export type HttpResponse<T = any> = {
+export type HttpResponse<T> = {
 	statusCode: HttpStatusCode;
-	body?: T;
+	body: T;
 };
+
