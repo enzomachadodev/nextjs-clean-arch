@@ -12,7 +12,6 @@ let env: EnvConfig;
 try {
 	const _env = envSchema.validateSync(process.env, { abortEarly: false });
 	env = _env;
-	console.log("env aqui", env);
 } catch (error) {
 	console.error("Invalid enviroment variables.");
 	throw new Error("Invalid enviroment variables.");
