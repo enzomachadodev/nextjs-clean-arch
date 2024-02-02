@@ -23,12 +23,18 @@ dependencies:
   axios:
     specifier: ^1.6.7
     version: 1.6.7
+  dotenv:
+    specifier: ^16.4.1
+    version: 16.4.1
   eslint:
     specifier: 8.29.0
     version: 8.29.0
   eslint-config-next:
     specifier: 13.0.7
     version: 13.0.7(eslint@8.29.0)(typescript@4.9.4)
+  inversify:
+    specifier: ^6.0.2
+    version: 6.0.2
   next:
     specifier: 13.0.7
     version: 13.0.7(react-dom@18.2.0)(react@18.2.0)
@@ -41,6 +47,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.49.3
     version: 7.49.3(react@18.2.0)
+  reflect-metadata:
+    specifier: ^0.2.1
+    version: 0.2.1
   styled-components:
     specifier: ^6.1.8
     version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
@@ -736,6 +745,11 @@ packages:
       esutils: 2.0.3
     dev: false
 
+  /dotenv@16.4.1:
+    resolution: {integrity: sha512-CjA3y+Dr3FyFDOAMnxZEGtnW9KBR2M0JvvUtXNW+dYJL5ROWxP9DUHCwgFqpMk0OXCc0ljhaNTr2w/kutYIcHQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
     dev: false
@@ -1419,6 +1433,10 @@ packages:
       side-channel: 1.0.4
     dev: false
 
+  /inversify@6.0.2:
+    resolution: {integrity: sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==}
+    dev: false
+
   /is-array-buffer@3.0.2:
     resolution: {integrity: sha512-y+FyyR/w8vfIRq4eQcM1EYgSTnmHXPqaF+IgzgraytCFq5Xh8lllDVmAZolPJiZttZLeFSINPYMaEJ7/vWUa1w==}
     dependencies:
@@ -2001,6 +2019,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
+
+  /reflect-metadata@0.2.1:
+    resolution: {integrity: sha512-i5lLI6iw9AU3Uu4szRNPPEkomnkjRTaVt9hy/bn5g/oSzekBSMeLZblcjP74AW0vBabqERLLIrz+gR8QYR54Tw==}
     dev: false
 
   /reflect.getprototypeof@1.0.4:
