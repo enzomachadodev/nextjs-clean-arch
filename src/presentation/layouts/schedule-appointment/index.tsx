@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "@/presentation/components/form";
@@ -16,6 +16,14 @@ import {
 	createScheduleSchema,
 } from "@/presentation/schemas/create-schedule-schema";
 import * as S from "./styles";
+import { SchedulingEntity } from "@/domain/entities/scheduling.entity";
+import { PokemonEntity } from "@/domain/entities/pokemon.entity";
+import { currencyFormatter } from "@/presentation/formatters/currency-formatter";
+import { addPokemon } from "@/presentation/actions/add-pokemon-in-scheduling";
+import { removeLastPokemon } from "@/presentation/actions/remove-last-pokemon-from-scheduling";
+import { getPokemon } from "@/presentation/actions/get-pokemon";
+import { useErrorModal } from "@/presentation/hooks/use-error-modal";
+import { clearScheduling } from "@/presentation/actions/clear-scheduling";
 
 interface ScheduleAppointmentLayoutProps {
 	dates: Option[];
@@ -27,7 +35,31 @@ export const ScheduleAppointmentLayout: React.FC<
 	ScheduleAppointmentLayoutProps
 > = ({ dates, pokemons, regions }) => {
 	const [pokemonCount, setPokemonCount] = useState<number>(1);
+	const [scheduling, setScheduling] = useState<SchedulingEntity>(
+		new SchedulingEntity({ pokemons: [] })
+	);
+
+	const addPokemonInScheduling = useCallback(async (pokemon: PokemonEntity) => {
+		const scheduling = await addPokemon(pokemon);
+		setScheduling(scheduling);
+	}, []);
+
+	const removePokemonFromScheduling = useCallback(async () => {
+		const scheduling = await removeLastPokemon();
+		setScheduling(scheduling);
+	}, []);
+
+	const clearSchedulingPokemons = useCallback(async () => {
+		const scheduling = await clearScheduling();
+		setScheduling(scheduling);
+	}, []);
+
+	useEffect(() => {
+		clearSchedulingPokemons();
+	}, [clearSchedulingPokemons]);
+
 	const successModal = useSuccessModal();
+	const errorModal = useErrorModal();
 	const formMethods = useForm<CreateScheduleFormData>({
 		resolver: yupResolver(createScheduleSchema),
 	});
@@ -60,6 +92,26 @@ export const ScheduleAppointmentLayout: React.FC<
 		refetchTime();
 	};
 
+	const handleSelectPokemon = async (pokemonName: string, index: number) => {
+		try {
+			const selectValue = watch(`pokemons.${index}`);
+			if (selectValue) {
+				if (selectValue == pokemonName) return;
+				removePokemonFromScheduling();
+				const pokemon = await getPokemon(pokemonName);
+				if (pokemon) {
+					return addPokemonInScheduling(pokemon);
+				}
+			}
+			const pokemon = await getPokemon(pokemonName);
+			if (pokemon) {
+				return addPokemonInScheduling(pokemon);
+			}
+		} catch (error) {
+			errorModal.onOpen();
+		}
+	};
+
 	const addPokemonInput = () => {
 		if (pokemonCount < 6) {
 			setPokemonCount((prevCount) => prevCount + 1);
@@ -68,6 +120,7 @@ export const ScheduleAppointmentLayout: React.FC<
 
 	const removePokemonInput = () => {
 		if (pokemonCount > 1) {
+			removePokemonFromScheduling();
 			setPokemonCount((prevCount) => prevCount - 1);
 			setValue(`pokemons.${pokemonCount - 1}`, "");
 		}
@@ -82,6 +135,7 @@ export const ScheduleAppointmentLayout: React.FC<
 		successModal.onOpen(`Seu agendamento para dia ${data.date}, às ${data.time},
 			para ${data.pokemons.length} pokémons foi realizado com sucesso!`);
 		setPokemonCount(1);
+		clearSchedulingPokemons();
 		reset();
 	};
 
@@ -145,6 +199,7 @@ export const ScheduleAppointmentLayout: React.FC<
 													options={pokemons}
 													name={`pokemons.${index}`}
 													placeholder="Selecione seu pokémon"
+													onSelect={(name) => handleSelectPokemon(name, index)}
 												/>
 											</div>
 											{index + 1 === pokemonCount && index !== 0 ? (
@@ -195,19 +250,19 @@ export const ScheduleAppointmentLayout: React.FC<
 								<S.CheckoutInfo>
 									<div className="row">
 										<p>Número de pokémons a serem atendidos:</p>
-										<p>{"numbers"}</p>
+										<p>{scheduling.pokemons.length}</p>
 									</div>
 									<div className="row">
 										<p>Atendimento unitário por pokémon:</p>
-										<p>{"numbers"}</p>
+										<p>{currencyFormatter(7000)}</p>
 									</div>
 									<div className="row">
 										<p>Subtotal:</p>
-										<p>{"numbers"}</p>
+										<p>{currencyFormatter(scheduling.subtotal)}</p>
 									</div>
 									<div className="row">
 										<p>Taxa geracional*:</p>
-										<p>{"numbers"}</p>
+										<p>{currencyFormatter(scheduling.tax)}</p>
 									</div>
 									<p className="tax-info">
 										*adicionamos uma taxa de 3%, multiplicado pelo número da
@@ -216,7 +271,7 @@ export const ScheduleAppointmentLayout: React.FC<
 								</S.CheckoutInfo>
 								<S.CheckoutTotal>
 									<span className="total-value">
-										{`Valor Total: ${"valor total"}`}
+										{`Valor Total: ${currencyFormatter(scheduling.total)}`}
 									</span>
 									<Button type="submit">Concluir Agendamento</Button>
 								</S.CheckoutTotal>

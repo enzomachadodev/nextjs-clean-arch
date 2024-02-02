@@ -4,6 +4,6 @@ export const currencyFormatter = (value: number): string => {
 		currency: "BRL",
 		minimumFractionDigits: 2,
 		maximumFractionDigits: 2,
-	}).format(value);
+	}).format(value / 100);
 };
 

@@ -12,6 +12,11 @@ import { ListTimesUseCase } from "@/application/usecases/list-times.usecase";
 import { ListPokemonsUseCase } from "@/application/usecases/list-pokemons.usecase";
 import { ListRegionsUseCase } from "@/application/usecases/list-regions.usecase";
 import { GetRegionUseCase } from "@/application/usecases/get-region.usecase";
+import { AddPokemonInSchedulingUseCase } from "@/application/usecases/add-pokemon-in-scheduling.usecase";
+import { RemoveLastPokemonFromSchedulingUseCase } from "@/application/usecases/remove-last-pokemon-from-scheduling.usecase";
+import { SchedulingLocalGateway } from "./gateways/schedule-local.gateway";
+import { GetPokemonUseCase } from "@/application/usecases/get-pokemon.usecase";
+import { ClearSchedulingUseCase } from "@/application/usecases/clear-scheduling.usecase";
 
 export const Registry = {
 	EnvConfig: Symbol.for("EnvConfig"),
@@ -22,12 +27,19 @@ export const Registry = {
 	TimeGateway: Symbol.for("TimeGateway"),
 	PokemonGateway: Symbol.for("PokemonGateway"),
 	RegionGateway: Symbol.for("RegionGateway"),
+	SchedulingGateway: Symbol.for("SchedulingGateway"),
 
 	ListDatesUseCase: Symbol.for("ListDatesUseCase"),
 	ListTimesUseCase: Symbol.for("ListTimesUseCase"),
 	ListPokemonsUseCase: Symbol.for("ListPokemonsUseCase"),
 	ListRegionsUseCase: Symbol.for("ListRegionsUseCase"),
 	GetRegionUseCase: Symbol.for("GetRegionUseCase"),
+	GetPokemonUseCase: Symbol.for("GetPokemonUseCase"),
+	AddPokemonInSchedulingUseCase: Symbol.for("AddPokemonInSchedulingUseCase"),
+	RemoveLastPokemonFromSchedulingUseCase: Symbol.for(
+		"RemoveLastPokemonFromSchedulingUseCase"
+	),
+	ClearSchedulingUseCase: Symbol.for("ClearSchedulingUseCase"),
 };
 
 export const container = new Container();
@@ -61,6 +73,8 @@ container.bind(Registry.RegionGateway).toDynamicValue((context) => {
 	);
 });
 
+container.bind(Registry.SchedulingGateway).to(SchedulingLocalGateway);
+
 container.bind(Registry.ListDatesUseCase).toDynamicValue((context) => {
 	return new ListDatesUseCase.UseCase(
 		context.container.get(Registry.DateGateway)
@@ -84,6 +98,30 @@ container.bind(Registry.ListRegionsUseCase).toDynamicValue((context) => {
 container.bind(Registry.GetRegionUseCase).toDynamicValue((context) => {
 	return new GetRegionUseCase.UseCase(
 		context.container.get(Registry.RegionGateway)
+	);
+});
+container.bind(Registry.GetPokemonUseCase).toDynamicValue((context) => {
+	return new GetPokemonUseCase.UseCase(
+		context.container.get(Registry.PokemonGateway)
+	);
+});
+container
+	.bind(Registry.AddPokemonInSchedulingUseCase)
+	.toDynamicValue((context) => {
+		return new AddPokemonInSchedulingUseCase.UseCase(
+			context.container.get(Registry.SchedulingGateway)
+		);
+	});
+container
+	.bind(Registry.RemoveLastPokemonFromSchedulingUseCase)
+	.toDynamicValue((context) => {
+		return new RemoveLastPokemonFromSchedulingUseCase.UseCase(
+			context.container.get(Registry.SchedulingGateway)
+		);
+	});
+container.bind(Registry.ClearSchedulingUseCase).toDynamicValue((context) => {
+	return new ClearSchedulingUseCase.UseCase(
+		context.container.get(Registry.SchedulingGateway)
 	);
 });
 
