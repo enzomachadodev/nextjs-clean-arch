@@ -3,7 +3,7 @@ import { LocationOutput } from "./location-output";
 
 export type RegionOutput = {
 	name: string;
-	locations?: LocationOutput[];
+	locations: LocationOutput[];
 };
 
 export class RegionOutputMapper {
