@@ -1,5 +1,5 @@
 import { DateGateway } from "@/domain/gateways/date.gateway";
-import { UseCase as DefaultUseCase } from "@/domain/usecases/usecase";
+import { UseCase as DefaultUseCase } from "./usecase";
 
 export namespace ListDatesUseCase {
 	export type Input = null;

@@ -1,6 +1,6 @@
 import { PokemonEntity } from "@/domain/entities/pokemon.entity";
 import { PokemonGateway } from "@/domain/gateways/pokemon.gateway";
-import { UseCase as DefaultUseCase } from "@/domain/usecases/usecase";
+import { UseCase as DefaultUseCase } from "./usecase";
 import { PokemonOutput, PokemonOutputMapper } from "../dtos/pokemon-output";
 
 export namespace ListPokemonsUseCase {

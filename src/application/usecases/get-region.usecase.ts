@@ -1,5 +1,5 @@
 import { RegionGateway } from "@/domain/gateways/region.gateway";
-import { UseCase as DefaultUseCase } from "@/domain/usecases/usecase";
+import { UseCase as DefaultUseCase } from "./usecase";
 import { RegionOutput, RegionOutputMapper } from "../dtos/region-output";
 
 export namespace GetRegionUseCase {
