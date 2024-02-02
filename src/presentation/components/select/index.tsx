@@ -15,29 +15,28 @@ export interface SelectProps {
 	errorMessage?: string;
 	options: Option[];
 	value?: string;
-	onSelect: (value: string) => void;
+	onSelect?: (value: string) => void;
 	placeholder?: string;
 	enableSearch?: boolean;
 	searchPlaceholder?: string;
+	loading?: boolean;
 }
 
 export const Select: React.FC<SelectProps> = ({
 	value = "",
 	label,
-	options,
-	onSelect,
+	options = [],
+	onSelect = () => {},
 	placeholder,
-	enableSearch = false,
-	searchPlaceholder,
 	error = false,
 	errorMessage,
 	disabled = false,
+	loading = false,
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
-	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -62,17 +61,17 @@ export const Select: React.FC<SelectProps> = ({
 			if (option) {
 				setSelectedOption(option);
 			}
+		} else {
+			setSelectedOption(null);
 		}
 	}, [value, options]);
 
-	const filteredOptions = options.filter((option) =>
-		option.label.toLowerCase().includes(searchValue.toLowerCase())
-	);
-
 	const handleOptionClick = (option: Option) => {
-		onSelect(option.value);
-		setSelectedOption(option);
-		setIsOpen(false);
+		if (option.value !== selectedOption?.value) {
+			onSelect(option.value);
+			setSelectedOption(option);
+		}
+		return setIsOpen(false);
 	};
 
 	const handleSelectClick = () => {
@@ -109,29 +108,14 @@ export const Select: React.FC<SelectProps> = ({
 					/>
 				</S.SelectTrigger>
 				<S.OptionsContainer open={isOpen ? "open" : undefined}>
-					{enableSearch && (
-						<S.SearchContainer>
-							<Image
-								alt="search"
-								src="/search.svg"
-								height={22}
-								width={22}
-								className="search-icon"
-							/>
-							<input
-								className="search-input"
-								type="text"
-								placeholder={searchPlaceholder || "Digite para buscar..."}
-								value={searchValue}
-								onChange={(e) => setSearchValue(e.target.value)}
-							/>
-						</S.SearchContainer>
-					)}
-
-					{filteredOptions.length === 0 ? (
+					{loading ? (
+						<S.LoaderContainer>
+							<p>Carregando...</p>
+						</S.LoaderContainer>
+					) : options.length === 0 ? (
 						<p className="no-options-message">Nenhuma opção encontrada.</p>
 					) : (
-						filteredOptions.map(({ label, value }, index) => (
+						options.map(({ label, value }, index) => (
 							<S.OptionItem
 								key={index}
 								selected={

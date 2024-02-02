@@ -10,7 +10,6 @@ const disabledStyle = css`
 
 export const SelectContainer = styled.div`
 	position: relative;
-	z-index: 50;
 	min-width: 265px;
 `;
 
@@ -73,6 +72,7 @@ const fadeOut = keyframes`
 
 export const OptionsContainer = styled.div<{ open?: string }>`
 	position: absolute;
+	z-index: 100;
 	list-style: none;
 	top: 88%;
 	left: 0;
@@ -129,5 +129,13 @@ export const SearchContainer = styled.div`
 	.search-input::placeholder {
 		color: var(--gray-3);
 	}
+`;
+
+export const LoaderContainer = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+	color: var(--gray-3);
 `;
 
