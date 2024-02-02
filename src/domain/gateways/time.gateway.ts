@@ -1,4 +1,4 @@
 export interface TimeGateway {
-	findAll(): Promise<string[]>;
+	findAll(date: string): Promise<string[]>;
 }
 
