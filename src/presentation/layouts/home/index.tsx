@@ -8,6 +8,7 @@ export const HomeLayout: React.FC = () => {
 				src="/images/pokemon-hero.jpg"
 				fill
 				alt="Hero"
+				priority
 			/>
 			<h1>Cuidamos bem do seu pokémon, para ele cuidar bem de você</h1>
 		</S.HomeContainer>

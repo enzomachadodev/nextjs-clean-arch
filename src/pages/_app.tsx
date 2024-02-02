@@ -5,6 +5,9 @@ import { StyleSheetManager } from "styled-components";
 import { Header } from "@/presentation/components/header";
 import { Footer } from "@/presentation/components/footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ModalProvider } from "@/presentation/contexts/modal-context";
+import { ErrorModal } from "@/presentation/components/error-modal";
+import { SuccessModal } from "@/presentation/components/success-modal";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -26,12 +29,16 @@ export default function App({ Component, pageProps }: AppProps) {
 				/>
 			</Head>
 			<QueryClientProvider client={queryClient}>
-				<StyleSheetManager shouldForwardProp={(prop) => prop !== "variant"}>
-					<GlobalStyles />
-					<Header />
-					<Component {...pageProps} />
-					<Footer />
-				</StyleSheetManager>
+				<ModalProvider>
+					<StyleSheetManager shouldForwardProp={(prop) => prop !== "variant"}>
+						<GlobalStyles />
+						<Header />
+						<Component {...pageProps} />
+						<Footer />
+						<ErrorModal />
+						<SuccessModal />
+					</StyleSheetManager>
+				</ModalProvider>
 			</QueryClientProvider>
 		</>
 	);

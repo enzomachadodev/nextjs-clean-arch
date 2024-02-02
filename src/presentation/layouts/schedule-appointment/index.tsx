@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "@/presentation/components/form";
@@ -10,6 +10,7 @@ import { ControlledInput } from "@/presentation/components/controlled-input";
 import { ControlledSelect } from "@/presentation/components/controlled-select";
 import { useLocationOptions } from "@/presentation/hooks/use-location-options";
 import { useTimeOptions } from "@/presentation/hooks/use-time-options";
+import { useSuccessModal } from "@/presentation/hooks/use-success-modal";
 import {
 	CreateScheduleFormData,
 	createScheduleSchema,
@@ -26,15 +27,12 @@ export const ScheduleAppointmentLayout: React.FC<
 	ScheduleAppointmentLayoutProps
 > = ({ dates, pokemons, regions }) => {
 	const [pokemonCount, setPokemonCount] = useState<number>(1);
+	const successModal = useSuccessModal();
 	const formMethods = useForm<CreateScheduleFormData>({
 		resolver: yupResolver(createScheduleSchema),
 	});
 
-	const { watch, reset, setValue, setError, formState } = formMethods;
-
-	useEffect(() => {
-		console.log(formState.errors);
-	}, [formState.errors]);
+	const { watch, reset, setValue, setError } = formMethods;
 
 	const regionValue = watch("region");
 	const dateValue = watch("date");
@@ -57,6 +55,11 @@ export const ScheduleAppointmentLayout: React.FC<
 		refetchLocation();
 	};
 
+	const handleSelectDate = () => {
+		setValue("time", "");
+		refetchTime();
+	};
+
 	const addPokemonInput = () => {
 		if (pokemonCount < 6) {
 			setPokemonCount((prevCount) => prevCount + 1);
@@ -76,6 +79,8 @@ export const ScheduleAppointmentLayout: React.FC<
 				type: "required",
 				message: "Selecione no mínimo um pokemon",
 			});
+		successModal.onOpen(`Seu agendamento para dia ${data.date}, às ${data.time},
+			para ${data.pokemons.length} pokémons foi realizado com sucesso!`);
 		setPokemonCount(1);
 		reset();
 	};
@@ -175,7 +180,7 @@ export const ScheduleAppointmentLayout: React.FC<
 										name="date"
 										label="Data para atendimento"
 										placeholder="Selecione uma data"
-										onSelect={() => refetchTime()}
+										onSelect={handleSelectDate}
 									/>
 									<ControlledSelect
 										options={timeOptions}
