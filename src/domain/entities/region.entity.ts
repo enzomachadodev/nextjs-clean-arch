@@ -7,11 +7,9 @@ export type RegionProps = {
 };
 
 export class RegionEntity extends Entity<RegionProps> {
-	private _locations: LocationEntity[];
-
 	constructor(public readonly props: RegionProps) {
 		super(props);
-		this._locations = this.props.locations || [];
+		this.props.locations = this.props.locations || [];
 	}
 
 	get name() {
@@ -19,7 +17,7 @@ export class RegionEntity extends Entity<RegionProps> {
 	}
 
 	get locations() {
-		return this._locations;
+		return this.props.locations;
 	}
 }
 
