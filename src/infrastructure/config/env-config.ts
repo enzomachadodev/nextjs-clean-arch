@@ -3,8 +3,8 @@ import * as yup from "yup";
 import { EnvConfig } from "./env-config.interface";
 
 const envSchema = yup.object({
-	NEXT_API_URL: yup.string().default("http://localhost:3000/api"),
-	POKE_API_URL: yup.string().default("https://pokeapi.co/api/v2"),
+	NEXT_PUBLIC_LOCAL_API_URL: yup.string().default("http://localhost:3000/api"),
+	NEXT_PUBLIC_POKE_API_URL: yup.string().default("https://pokeapi.co/api/v2"),
 });
 
 let env: EnvConfig;

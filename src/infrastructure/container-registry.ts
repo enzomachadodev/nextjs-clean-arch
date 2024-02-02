@@ -50,25 +50,33 @@ container.bind(Registry.HttpClient).to(AxiosHttpClient);
 
 container.bind(Registry.DateGateway).toDynamicValue((context) => {
 	return new DateHttpGateway(
-		context.container.get<EnvConfig>(Registry.EnvConfig).NEXT_API_URL,
+		context.container.get<EnvConfig>(
+			Registry.EnvConfig
+		).NEXT_PUBLIC_LOCAL_API_URL,
 		context.container.get(Registry.HttpClient)
 	);
 });
 container.bind(Registry.TimeGateway).toDynamicValue((context) => {
 	return new TimeHttpGateway(
-		context.container.get<EnvConfig>(Registry.EnvConfig).NEXT_API_URL,
+		context.container.get<EnvConfig>(
+			Registry.EnvConfig
+		).NEXT_PUBLIC_LOCAL_API_URL,
 		context.container.get(Registry.HttpClient)
 	);
 });
 container.bind(Registry.PokemonGateway).toDynamicValue((context) => {
 	return new PokemonHttpGateway(
-		context.container.get<EnvConfig>(Registry.EnvConfig).POKE_API_URL,
+		context.container.get<EnvConfig>(
+			Registry.EnvConfig
+		).NEXT_PUBLIC_POKE_API_URL,
 		context.container.get(Registry.HttpClient)
 	);
 });
 container.bind(Registry.RegionGateway).toDynamicValue((context) => {
 	return new RegionHttpGateway(
-		context.container.get<EnvConfig>(Registry.EnvConfig).POKE_API_URL,
+		context.container.get<EnvConfig>(
+			Registry.EnvConfig
+		).NEXT_PUBLIC_POKE_API_URL,
 		context.container.get(Registry.HttpClient)
 	);
 });
