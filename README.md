@@ -2,12 +2,12 @@
 
 # Next.js Clean Arch
 
-O projeto consiste em uma aplicação front-end com Next.js e TypeScript, consumindo a Poke API e uma API interna do Next.js para obter informações e permitir agendar consultas medicas para seus Pokémons. O foco do projeto foi utilizar o padrão Clean Architecture para garantir um código modular, escalável e de fácil manutenção.
+The project consists of a front-end application with Next.js and TypeScript, consuming the Poke API and an internal Next.js API to obtain information and allow you to schedule medical appointments for your Pokémon. The focus of the project was to use the Clean Architecture standard to guarantee modular, scalable and easy to maintain code.
 
 ![home page](public/test-sample/Home.png)
 ![](public/test-sample/Agendar%20Consulta.png)
 
-## Tecnologias Utilizadas
+## Technologies
 
  - [TypeScript](https://www.typescriptlang.org/)
  - [Yup](https://www.npmjs.com/package/yup?activeTab=readme)
@@ -21,33 +21,33 @@ O projeto consiste em uma aplicação front-end com Next.js e TypeScript, consum
  - [React-Hook-Form](https://react-hook-form.com/)
  - [Styled-Components](https://styled-components.com/)
 
-## Requisitos
+## Requirements
 
-Para rodar o projeto localmente, você precisa ter as seguintes ferramentas instaladas:
+To run the project locally, you need to have the following tools installed:
 
-- Node.js versão 18 ou superior
+- Node.js version 18 or higher
 
-## Rodando localmente
+## Running locally
 
-Clone o projeto
+Clone the project
 
 ```bash
   git clone https://github.com/enzomachadodev/nextjs-clean-arch
 ```
 
-Entre no diretório do projeto
+Enter the project directory
 
 ```bash
   cd nextjs-clean-arch
 ```
 
-Instale as dependências
+Install dependencies
 
 ```bash
   npm install
 ```
 
-Inicie o servidor
+Start the server
 
 ```bash
   npm run dev
